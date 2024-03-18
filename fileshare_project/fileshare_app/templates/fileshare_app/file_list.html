@@ -1,0 +1,32 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+  <h2>File List</h2>
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        
+        <th scope="col">File</th>
+        <th scope="col">Share Link</th>
+        <th scope="col">Download</th>
+      </tr>
+    </thead>
+    <tbody>
+        {% for file in files %}
+      <tr>
+       
+        <td>{{ file.file.name }}</td>
+        <td><a href="{% url 'file_share' file.id %}">Share Link</a></td>
+        <td><a href="{% url 'download_file' filename=file.file.name %}">Download Example File</a></td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  <ul>
+    {% comment %} {% for file in files %}
+      <li>
+        {{ file.file.name }} - <a href="{% url 'file_share' file.id %}">Share Link</a>
+      </li>
+    {% endfor %} {% endcomment %}
+  </ul>
+{% endblock %}
